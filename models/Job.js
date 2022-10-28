@@ -1,0 +1,71 @@
+const mongoose = require('mongoose');
+const JobSchema = mongoose.Schema({
+    title:{
+        type:String,
+        min:3,
+        max:100,
+        required:true
+    },
+    description:{
+        type:String,
+        min:1,
+        max:500,
+        required:true
+    },
+    startingDate:{
+        type:Date,
+        required:true
+    },
+    endingDate:{
+        type:Date,
+        required:true
+    },
+    time:{
+        type:Date,
+        required:true
+    },
+    days:[{type:String}],
+    tags:[{type:String}],
+    enrollLimit:Number,
+    experience:{
+        type:Number,
+        required:true
+    },
+    fees:{
+        type:Number,
+        required:true
+    },
+    duration:{
+        type:String,
+        enum:['One Day','One Month','One Week','Custom'],
+        required:true
+    },
+    mode:{
+        type:String,
+        enum:['Virtual','Physical'],
+        default:'Virtual'
+    },
+    cancellationChance:{
+        type:Number,
+        default:50
+    },
+    currentlyEnrolledStudent:{
+        type:Number,
+        default:0
+    },
+    status:{
+        type:Boolean,
+        default:false,
+    },
+    user_uid:{
+        type:mongoose.Types.ObjectId,
+        required:true
+    },
+    user_firebase_uid:{
+        type:String,
+        required:true
+    }
+})
+
+const Job = mongoose.model('Job',JobSchema);
+module.exports = Job
