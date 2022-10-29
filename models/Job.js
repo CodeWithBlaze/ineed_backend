@@ -18,7 +18,6 @@ const JobSchema = mongoose.Schema({
     },
     endingDate:{
         type:Date,
-        required:true
     },
     time:{
         type:Date,
@@ -37,13 +36,13 @@ const JobSchema = mongoose.Schema({
     },
     duration:{
         type:String,
-        enum:['One Day','One Month','One Week','Custom'],
+        enum:['one','month','week','custom'],
         required:true
     },
     mode:{
         type:String,
-        enum:['Virtual','Physical'],
-        default:'Virtual'
+        enum:['virtual','physical'],
+        default:'virtual'
     },
     cancellationChance:{
         type:Number,
@@ -59,9 +58,10 @@ const JobSchema = mongoose.Schema({
     },
     user_uid:{
         type:mongoose.Types.ObjectId,
+        ref:'User',
         required:true
     },
-    user_firebase_uid:{
+    uid:{
         type:String,
         required:true
     }
