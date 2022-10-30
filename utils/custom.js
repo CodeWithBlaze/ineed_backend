@@ -16,7 +16,12 @@ const fileFilter = (req,file,cb) =>{
         cb(null,false)
     }
 }
+function extractDateFromTimeStamp(dt){
+    const date = new Date(dt);
+    return date.getDate()+"/"+date.getMonth()+"/"+date.getFullYear();
+}
 module.exports = {
     fileStorage,
-    fileFilter
+    fileFilter,
+    extractDateFromTimeStamp
 }
