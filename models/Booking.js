@@ -7,7 +7,8 @@ const bookingSchema = mongoose.Schema({
     },
     job_id:{
         type:mongoose.Types.ObjectId,
-        require:true
+        require:true,
+        ref:'Job'
     },
     valid_up_to:{
         type:Date,

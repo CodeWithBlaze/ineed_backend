@@ -48,10 +48,6 @@ const JobSchema = mongoose.Schema({
         type:Number,
         default:50
     },
-    currentlyEnrolledStudent:{
-        type:Number,
-        default:0
-    },
     status:{
         type:Boolean,
         default:false,

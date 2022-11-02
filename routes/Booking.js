@@ -30,5 +30,27 @@ router.get('/count/:id',async(req,res)=>{
     const result = await Booking.find({job_id:id});
     return res.status(200).send(result.length.toString())
 })
-
+router.get('/user/:id',async(req,res)=>{
+    const id = req.params.id;
+    if(!id)
+        return res.status(400).send("No ID found")
+    const result = await Booking.find({student_id:id}).populate({
+        path: "job_id", // populate job
+        populate: {
+           path: "user_uid" // in job, populate user_uid
+        }
+     })
+    return res.status(200).send(result)
+})
+router.get('/user/id/:id',async(req,res)=>{
+    const id = req.params.id;
+    if(!id)
+        return res.status(400).send("No ID found")
+    const result = await Booking.find({student_id:id}).select('job_id -_id')
+    const result_array = []
+    result.forEach(r=>{
+        result_array.push(r.job_id)
+    })
+    return res.status(200).send(result_array);
+})
 module.exports = router;

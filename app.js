@@ -10,6 +10,7 @@ const User = require('./routes/User')
 const Job = require('./routes/Job');
 const Notification = require('./routes/Notification');
 const Booking = require('./routes/Booking');
+const Reviews = require('./routes/Reviews')
 app.use(cors())
 app.use(express.static('image'))
 app.use(multer({storage:utils.fileStorage,fileFilter:utils.fileFilter}).single('image'))
@@ -20,6 +21,7 @@ app.use('/user',User);
 app.use('/job',Job);
 app.use('/notification',Notification)
 app.use('/booking',Booking);
+app.use('/review',Reviews);
 app.get('/',(req,res)=>{
     return res.status(200).send("This response is from ineed app server")
 })
